@@ -16,8 +16,11 @@ class SNAKE_API APickup : public AInteractable
 public:
 	APickup();
 
-	//UFUNCTION(BlueprintImplementableEvent)
-	//	void OnUsed();
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable,Category="Pickup")
+		void OnUsed();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Pickup")
+		void Drop();
 
 protected:
 

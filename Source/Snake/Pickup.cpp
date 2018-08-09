@@ -6,7 +6,7 @@
 APickup::APickup()
 {
 	PickupMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Pickup Mesh"));
-	//PickupMesh->SetupAttachment(RootComponent);
+	RootComponent = Cast<USceneComponent>(PickupMesh);
 	
 	ItemID = FName("Enter ID");
 }
