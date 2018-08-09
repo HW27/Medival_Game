@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Components/BoxComponent.h"
-#include "SnakeCharacter.h"
+//#include "SnakeCharacter.h"
 #include "CampFire.generated.h"
 
 UCLASS()

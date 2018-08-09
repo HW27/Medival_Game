@@ -7,7 +7,6 @@
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
 #include "Components/BoxComponent.h"
-//#include "GameplayController.h"
 #include "Engine/DataTable.h"
 #include "SnakeCharacter.generated.h"
 
@@ -273,11 +272,15 @@ public:
 		FText GetLvlValue();
 
 	UPROPERTY()
-		TArray<int> ExperienceCap;
+		int ExperienceCap;
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void AddExperiance(int Value);
 
+	UFUNCTION(BlueprintPure, Category = "Level")
+		FText GetExpValue();
 	
+
+
 };
 

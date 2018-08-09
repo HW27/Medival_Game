@@ -11,6 +11,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "TimerManager.h"
 #include "GameplayController.h"
+#include "CampFire.h"
 #include "GameFramework/SpringArmComponent.h"
 
 
@@ -53,6 +54,7 @@ ASnakeCharacter::ASnakeCharacter()
 												   //CollectionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("CollectionSphere"));
 												   //CollectionSphere->SetupAttachment(RootComponent);
 												   //CollectionSphere->SetSphereRadius(SphereRadius);
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -117,19 +119,16 @@ void ASnakeCharacter::BeginPlay()
 		MyTimeline.SetTimelineFinishedFunc(TimelineFinishedCallback);
 	}
 
-	ExperienceCap.Add(1000);
-	ExperienceCap.Add(2000);
-	ExperienceCap.Add(1000);
-	ExperienceCap.Add(2000);
-	CurrentExperience = 0;
+	ExperienceCap = 1000;
 	lvl = 1;
+
+
 }
 
 void ASnakeCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	int i = 0;
 
 	//MANA TIMER
 	MyTimeline.TickTimeline(DeltaTime);
@@ -137,12 +136,9 @@ void ASnakeCharacter::Tick(float DeltaTime)
 	//INVENTORY AND PICKUPS
 	CheckForInteractables();
 
-	if (CurrentExperience == ExperienceCap[i])
-	{
+	if (CurrentExperience >= ExperienceCap)
 		LevelUp();
-		i++;
-	}
-		
+	
 
 }
 
@@ -164,6 +160,7 @@ void ASnakeCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Locati
 
 void ASnakeCharacter::CastSpell()
 {
+	GetWorld()->SpawnActor<ACampFire>(GetCharacterMovement()->GetActorLocation(), FRotator(0, 0, 0) );
 	UE_LOG(LogTemp, Warning, TEXT("SPELL"));
 	MyTimeline.Stop();
 	GetWorldTimerManager().ClearTimer(MagicTimerHandle);
@@ -337,8 +334,10 @@ void ASnakeCharacter::CheckForInteractables()
 
 void ASnakeCharacter::LevelUp()
 {
-	lvl++;
-	CurrentExperience = 0;
+	lvl+=1;
+	CurrentExperience = CurrentExperience-ExperienceCap;
+	ExperienceCap += 750;
+	
 }
 
 FText ASnakeCharacter::GetLvlValue()
@@ -353,4 +352,13 @@ FText ASnakeCharacter::GetLvlValue()
 void ASnakeCharacter::AddExperiance(int Value)
 {
 	CurrentExperience += Value;
+}
+
+FText ASnakeCharacter::GetExpValue()
+{
+	FString HPS = FString::FromInt(CurrentExperience);
+	FString HPE = FString::FromInt(ExperienceCap);
+	FString HealthHUD = HPS + FString(TEXT(" /")) + HPE;
+	FText HPText = FText::FromString(HealthHUD);
+	return HPText;
 }

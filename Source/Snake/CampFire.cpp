@@ -3,6 +3,7 @@
 #include "CampFire.h"
 #include "Kismet/GameplayStatics.h"
 #include "TimerManager.h"
+#include "UObject/ConstructorHelpers.h"
 
 // Sets default values
 ACampFire::ACampFire()
@@ -12,6 +13,7 @@ ACampFire::ACampFire()
 	RootComponent = MyBoxComponent;
 
 	Fire = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("My Fire"));
+	//Fire = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("/Game/StarterConent/Particles/P_Fire"));
 	Fire->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	Fire->SetupAttachment(RootComponent);
 
