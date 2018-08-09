@@ -22,6 +22,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	class AInteractable* CurrentInteractable;
 
+
 	UFUNCTION(BlueprintCallable, Category = "Utils")
 	void CraftItem(FInventoryItem IteamA, FInventoryItem ItemB);
 	
@@ -35,6 +36,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void ReloadMyInventory();
+
+	
+
+
 
 protected:
 	virtual void SetupInputComponent() override;

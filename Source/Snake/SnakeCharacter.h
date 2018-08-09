@@ -260,5 +260,24 @@ public:
 
 	void CheckForInteractables();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int lvl;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int CurrentExperience;
+
+	UFUNCTION()
+		void LevelUp();
+
+	UFUNCTION(BlueprintPure, Category = "Level")
+		FText GetLvlValue();
+
+	UPROPERTY()
+		TArray<int> ExperienceCap;
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void AddExperiance(int Value);
+
+	
 };
 

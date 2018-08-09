@@ -10,6 +10,8 @@
 //	UE_LOG(LogTemp, Warning, TEXT("fafa"));
 //}
 
+
+
 void AGameplayController::SetupInputComponent()
 {
 	Super::SetupInputComponent();

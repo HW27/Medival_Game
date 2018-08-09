@@ -116,17 +116,33 @@ void ASnakeCharacter::BeginPlay()
 		MyTimeline.AddInterpFloat(MagicCurveCast, TimelineCallback);
 		MyTimeline.SetTimelineFinishedFunc(TimelineFinishedCallback);
 	}
+
+	ExperienceCap.Add(1000);
+	ExperienceCap.Add(2000);
+	ExperienceCap.Add(1000);
+	ExperienceCap.Add(2000);
+	CurrentExperience = 0;
+	lvl = 1;
 }
 
 void ASnakeCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	int i = 0;
+
 	//MANA TIMER
 	MyTimeline.TickTimeline(DeltaTime);
 
 	//INVENTORY AND PICKUPS
 	CheckForInteractables();
+
+	if (CurrentExperience == ExperienceCap[i])
+	{
+		LevelUp();
+		i++;
+	}
+		
 
 }
 
@@ -317,4 +333,24 @@ void ASnakeCharacter::CheckForInteractables()
 		}
 	}
 	MyController->CurrentInteractable = nullptr;
+}
+
+void ASnakeCharacter::LevelUp()
+{
+	lvl++;
+	CurrentExperience = 0;
+}
+
+FText ASnakeCharacter::GetLvlValue()
+{
+	FString HPS = FString::FromInt(lvl);
+	FString HealthHUD = HPS + FString(TEXT(" LVL"));
+	FText HPText = FText::FromString(HealthHUD);
+	return HPText;
+
+}
+
+void ASnakeCharacter::AddExperiance(int Value)
+{
+	CurrentExperience += Value;
 }
