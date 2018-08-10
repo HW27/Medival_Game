@@ -280,7 +280,28 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Level")
 		FText GetExpValue();
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float ExpPercentage;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int Strength;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int Agility;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int Wisdom;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int Stamina;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int SkillPoints;
+
+	UFUNCTION(BlueprintPure, Category = "Level")
+		FText GetSkillPointsValue();
+
+	UFUNCTION(BlueprintPure, Category = "Health")
+		float GetExperiencePercentage();
 };
 
