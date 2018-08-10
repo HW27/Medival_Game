@@ -301,7 +301,14 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Level")
 		FText GetSkillPointsValue();
 
-	UFUNCTION(BlueprintPure, Category = "Health")
+	UFUNCTION(BlueprintPure, Category = "Level")
 		float GetExperiencePercentage();
+
+	UFUNCTION(BlueprintPure, Category = "Level")
+		int GetExperianceCap();
+
+	UFUNCTION(BlueprintPure, Category = "Level")
+		int GetCurrentExperience();
+
 };
 

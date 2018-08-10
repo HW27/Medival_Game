@@ -44,7 +44,6 @@ void AGameplayController::Interact()
 {
 	if (CurrentInteractable)
 	{
-		
 		CurrentInteractable->Interact(this);
 	}
 }

@@ -121,7 +121,7 @@ void ASnakeCharacter::BeginPlay()
 
 	ExperienceCap = 1000;
 	lvl = 1;
-
+	CurrentExperience = 0;
 	Strength=10;
 	Agility=10;
 	Wisdom = 10;
@@ -342,8 +342,9 @@ void ASnakeCharacter::LevelUp()
 	lvl+=1;
 	CurrentExperience = CurrentExperience-ExperienceCap;
 	ExperienceCap += 750;
-	ExpPercentage = CurrentExperience / ExperienceCap;
+	ExpPercentage = (float)CurrentExperience / (float)ExperienceCap;
 	SkillPoints += 1;
+	AddExperiance(0);
 	
 }
 
@@ -358,10 +359,9 @@ FText ASnakeCharacter::GetLvlValue()
 
 void ASnakeCharacter::AddExperiance(int Value)
 {
-	//CurrentExperience = FMath::Clamp(CurrentExperience += Value, 0.0f, ExperienceCap);
+	//CurrentExperience = FMath::Clamp(CurrentExperience += Value, 0, ExperienceCap);
 	CurrentExperience += Value;
-	ExpPercentage = CurrentExperience / ExperienceCap;
-	int i = 0;
+	ExpPercentage = (float)CurrentExperience / (float)ExperienceCap;
 }
 
 FText ASnakeCharacter::GetExpValue()
@@ -385,3 +385,14 @@ float ASnakeCharacter::GetExperiencePercentage()
 {
 	return ExpPercentage;
 }
+
+int ASnakeCharacter::GetExperianceCap()
+{
+	return ExperienceCap;
+}
+
+int ASnakeCharacter::GetCurrentExperience()
+{
+	return CurrentExperience;
+}
+
