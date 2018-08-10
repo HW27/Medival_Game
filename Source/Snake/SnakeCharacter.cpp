@@ -88,6 +88,7 @@ void ASnakeCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 
 
 	PlayerInputComponent->BindAction("CastSpell_1", IE_Pressed, this, &ASnakeCharacter::CastSpell);
+	//PlayerInputComponent->BindAction("SkillTree", IE_Pressed, this, &ASnakeCharacter::OpenSkillTree);
 
 }
 
@@ -171,6 +172,11 @@ void ASnakeCharacter::CastSpell()
 	GetWorldTimerManager().ClearTimer(MagicTimerHandle);
 	SetMagicChange(-20.0f);
 	GetWorldTimerManager().SetTimer(MagicTimerHandle, this, &ASnakeCharacter::UpdateMagic, 5.0f, false);
+}
+
+void ASnakeCharacter::OpenSkillTree()
+{
+	UE_LOG(LogTemp, Warning, TEXT("SKillTree "));
 }
 
 void ASnakeCharacter::TurnAtRate(float Rate)
@@ -394,5 +400,25 @@ int ASnakeCharacter::GetExperianceCap()
 int ASnakeCharacter::GetCurrentExperience()
 {
 	return CurrentExperience;
+}
+
+int ASnakeCharacter::GetStrength()
+{
+	return Strength;
+}
+
+int ASnakeCharacter::GetStamina()
+{
+	return Stamina;
+}
+
+int ASnakeCharacter::GetAgility()
+{
+	return Agility;
+}
+
+int ASnakeCharacter::GetWisdom()
+{
+	return Wisdom;
 }
 

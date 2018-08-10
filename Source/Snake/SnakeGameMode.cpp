@@ -7,8 +7,6 @@
 
 
 
-
-
 ASnakeGameMode::ASnakeGameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;

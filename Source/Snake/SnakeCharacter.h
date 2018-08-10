@@ -132,6 +132,9 @@ protected:
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 	void CastSpell();
+
+	void OpenSkillTree();
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -310,5 +313,16 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Level")
 		int GetCurrentExperience();
 
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		int GetStrength();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		int GetStamina();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		int GetAgility();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		int GetWisdom();
 };
 

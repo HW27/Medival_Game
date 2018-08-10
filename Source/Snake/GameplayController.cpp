@@ -5,12 +5,6 @@
 //#include "SnakeGameMode.h"
 //#include "SnakeCharacter.h"
 
-//void AGameplayController::ReloadMyInventory()
-//{
-//	UE_LOG(LogTemp, Warning, TEXT("fafa"));
-//}
-
-
 
 void AGameplayController::SetupInputComponent()
 {
