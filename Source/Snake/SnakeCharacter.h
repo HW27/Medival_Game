@@ -324,5 +324,20 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		int GetWisdom();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		int GetSkillPoints();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void AddStrength();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void AddStamina();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void AddWisdom();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void AddAgility();
 };
 

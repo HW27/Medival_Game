@@ -422,3 +422,32 @@ int ASnakeCharacter::GetWisdom()
 	return Wisdom;
 }
 
+int ASnakeCharacter::GetSkillPoints()
+{
+	return SkillPoints;
+}
+
+void ASnakeCharacter::AddStrength()
+{
+	Strength+=1;
+	SkillPoints-=1;
+}
+
+void ASnakeCharacter::AddStamina()
+{
+	Stamina += 1;
+	SkillPoints -= 1;
+}
+
+void ASnakeCharacter::AddWisdom()
+{
+	Wisdom += 1;
+	SkillPoints -= 1;
+}
+
+void ASnakeCharacter::AddAgility()
+{
+	Agility += 1;
+	SkillPoints -= 1;
+}
+
