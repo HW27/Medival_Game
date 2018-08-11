@@ -54,7 +54,9 @@ ASnakeCharacter::ASnakeCharacter()
 												   //CollectionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("CollectionSphere"));
 												   //CollectionSphere->SetupAttachment(RootComponent);
 												   //CollectionSphere->SetSphereRadius(SphereRadius);
-
+	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
+	WeaponMesh->AttachTo(RootComponent);
+	//WeaponMesh->SetupAttachment(RootComponent);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -129,6 +131,7 @@ void ASnakeCharacter::BeginPlay()
 	Stamina=10;
 	SkillPoints = 0;
 	ExpPercentage = 0.0f;
+	WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
 }
 
 void ASnakeCharacter::Tick(float DeltaTime)
@@ -450,4 +453,3 @@ void ASnakeCharacter::AddAgility()
 	Agility += 1;
 	SkillPoints -= 1;
 }
-
