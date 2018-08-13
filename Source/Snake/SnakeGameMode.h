@@ -31,8 +31,6 @@ public:
 
 	virtual void Tick(float DeltaTime);
 
-
-
 	/** Returns the current playing state */
 	UFUNCTION(BlueprintPure, Category = "Health")
 		EGamePlayState GetCurrentState() const;
