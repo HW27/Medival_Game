@@ -31,6 +31,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Utils")
 	void AddItemToInventoryByID(FName ID);
 
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Utils")
 		TArray<FInventoryItem> Inventory;
 

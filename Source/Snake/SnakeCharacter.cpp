@@ -58,6 +58,9 @@ ASnakeCharacter::ASnakeCharacter()
 	
 	ShieldMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShieldMesh"));
 	ShieldMesh->AttachTo(RootComponent);
+
+	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
+	WeaponMesh->AttachTo(RootComponent);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -133,7 +136,7 @@ void ASnakeCharacter::BeginPlay()
 	ExpPercentage = 0.0f;
 	
 	ShieldMesh->AttachTo(this->GetMesh(), "Shield_Socket");
-
+	WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
 
 	
 }

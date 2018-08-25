@@ -56,4 +56,6 @@ public:
 
 	//UFUNCTION(VisibleAnywhere)
 	UDataTable* GetItemDB() const { return ItemBD; }
+
+
 };

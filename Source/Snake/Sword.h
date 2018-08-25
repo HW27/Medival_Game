@@ -34,13 +34,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int LevelCap;
 
-	UFUNCTION(BlueprintCallable, Category = "Level")
-		void AttachtoCharacter(ASnakeCharacter* Player);
-	
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Pickup")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Weapon")
+		void Drop();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Weapon")
 		void OnUsed();
 
-	//UPROPERTY(EditAnywhere)
-		//UStaticMeshComponent * PickupMesh;
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void AttachtoCharacter(ASnakeCharacter* Player);
+
 	
 };
