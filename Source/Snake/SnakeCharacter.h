@@ -8,6 +8,7 @@
 #include "Components/TimelineComponent.h"
 #include "Components/BoxComponent.h"
 #include "Engine/DataTable.h"
+//#include "Sword.h"
 #include "SnakeCharacter.generated.h"
 
 USTRUCT(BlueprintType)
@@ -350,11 +351,19 @@ public:
 
 	public: 
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		USkeletalMeshComponent* WeaponMesh;
+//	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	//	ASword* Weapon;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* ShieldMesh;
-	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool bIsWeaponEquipped;
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		bool GetEquipState() { return bIsWeaponEquipped; }
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		void AttachWeaponToCharacter(AMeleeWeapon* weapon);
 };
 

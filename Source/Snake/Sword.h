@@ -28,7 +28,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int Damage;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 		ASnakeCharacter* MyCharacter;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -39,9 +39,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Weapon")
 		void OnUsed();
-
+	/*
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void AttachtoCharacter(ASnakeCharacter* Player);
-
-	
+	*/
+	UFUNCTION()
+		void OnOverlap(AActor* MyOverlappedActor, AActor* OtherActor);
 };

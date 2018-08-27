@@ -12,6 +12,7 @@
 #include "TimerManager.h"
 #include "GameplayController.h"
 #include "CampFire.h"
+#include "MeleeWeapon.h"
 #include "GameFramework/SpringArmComponent.h"
 
 
@@ -59,8 +60,8 @@ ASnakeCharacter::ASnakeCharacter()
 	ShieldMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShieldMesh"));
 	ShieldMesh->AttachTo(RootComponent);
 
-	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
-	WeaponMesh->AttachTo(RootComponent);
+	//WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
+	//WeaponMesh->AttachTo(RootComponent);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -135,10 +136,11 @@ void ASnakeCharacter::BeginPlay()
 	SkillPoints = 0;
 	ExpPercentage = 0.0f;
 	
-	ShieldMesh->AttachTo(this->GetMesh(), "Shield_Socket");
-	WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
 
-	
+	ShieldMesh->AttachTo(this->GetMesh(), "Shield_Socket");
+	//WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
+
+	bIsWeaponEquipped = false;
 }
 
 void ASnakeCharacter::Tick(float DeltaTime)
@@ -459,4 +461,13 @@ void ASnakeCharacter::AddAgility()
 {
 	Agility += 1;
 	SkillPoints -= 1;
+}
+
+void ASnakeCharacter::AttachWeaponToCharacter(AMeleeWeapon* weapon)
+{
+	//weapon->WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
+	weapon->WeaponMesh->AttachToComponent(this->GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepWorld, true), "Weapon_Socket");
+	//WeaponMesh->AttachTo(RootComponent);
+	//UE_LOG(LogTemp, Warning, TEXT("ASnakeCharacter::AttachWeaponToCharacter"));
+	//WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
 }

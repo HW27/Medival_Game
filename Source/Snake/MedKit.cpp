@@ -1,11 +1,5 @@
-// Harrison McGuire
-// UE4 Version 4.19.2
-// https://github.com/Harrison1/unrealcpp
-// https://severallevels.io
-// https://harrisonmcguire.com
 
 #include "MedKit.h"
-
 
 // Sets default values
 AMedKit::AMedKit()
