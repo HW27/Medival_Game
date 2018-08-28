@@ -22,7 +22,7 @@ void AMeleeWeapon::OnOverlap(AActor * MyOverlappedActor, AActor * OtherActor)
 	{
 		MyCharacter = Cast<ASnakeCharacter>(OtherActor);
 		 
-		if (MyCharacter && MyCharacter->GetEquipState() == false)
+		if (MyCharacter && MyCharacter->GetEquipWeaponState() == false)
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("AMeleeWeapon::OnOverlap()"));
 			MyCharacter->AttachWeaponToCharacter(this);

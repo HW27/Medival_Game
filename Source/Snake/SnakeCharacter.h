@@ -355,15 +355,30 @@ public:
 	//	ASword* Weapon;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		UStaticMeshComponent* ShieldMesh;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool bIsWeaponEquipped;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
-		bool GetEquipState() { return bIsWeaponEquipped; }
+		bool GetEquipWeaponState() { return bIsWeaponEquipped; }
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 		void AttachWeaponToCharacter(AMeleeWeapon* weapon);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool bIsBlocking;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool bIsShieldEquipped;
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		bool GetEquipShieldState() { return bIsShieldEquipped; }
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		void AttachShieldToCharacter(AShield* shield);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		AMeleeWeapon* CurrentMeleeWeapon;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		AShield* CurrentShield;
 };
 
