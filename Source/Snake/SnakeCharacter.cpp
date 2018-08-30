@@ -136,6 +136,8 @@ void ASnakeCharacter::BeginPlay()
 
 	bIsWeaponEquipped = false;
 	bIsShieldEquipped = false;
+	CurrentMeleeWeapon = nullptr;
+	CurrentShield = nullptr;
 }
 
 void ASnakeCharacter::Tick(float DeltaTime)
@@ -460,6 +462,10 @@ void ASnakeCharacter::AddAgility()
 
 void ASnakeCharacter::AttachWeaponToCharacter(AMeleeWeapon* weapon)
 {
+	if (CurrentMeleeWeapon != nullptr)
+		RemoveMeleeWeaponFromCharacter();
+
+	CurrentMeleeWeapon = weapon;
 	//weapon->WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
 	weapon->WeaponMesh->AttachToComponent(this->GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), "Weapon_Socket");
 	//WeaponMesh->AttachTo(RootComponent);
@@ -470,6 +476,20 @@ void ASnakeCharacter::AttachWeaponToCharacter(AMeleeWeapon* weapon)
 
 void ASnakeCharacter::AttachShieldToCharacter(AShield * shield)
 {
+	CurrentShield = shield;
 	shield->ShieldMesh->AttachToComponent(this->GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), "Shield_Socket");
 	bIsShieldEquipped = true;
+}
+
+void ASnakeCharacter::RemoveMeleeWeaponFromCharacter()
+{
+	UE_LOG(LogTemp, Warning, TEXT(" ASnakeCharacter::RemoveMeleeWeaponFromCharacter()"));
+	CurrentMeleeWeapon->DetachFromActor(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
+	CurrentMeleeWeapon = nullptr;
+	bIsWeaponEquipped = false;
+}
+
+void ASnakeCharacter::RemoveShieldFromCharacter()
+{
+
 }

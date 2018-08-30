@@ -380,5 +380,11 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		AShield* CurrentShield;
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		void RemoveMeleeWeaponFromCharacter();
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		void RemoveShieldFromCharacter();
 };
 
