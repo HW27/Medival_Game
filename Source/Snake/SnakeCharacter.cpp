@@ -462,8 +462,7 @@ void ASnakeCharacter::AddAgility()
 
 void ASnakeCharacter::AttachWeaponToCharacter(AMeleeWeapon* weapon)
 {
-	if (CurrentMeleeWeapon != nullptr)
-		RemoveMeleeWeaponFromCharacter();
+	RemoveMeleeWeaponFromCharacter();
 
 	CurrentMeleeWeapon = weapon;
 	//weapon->WeaponMesh->AttachTo(this->GetMesh(), "Weapon_Socket");
@@ -476,6 +475,8 @@ void ASnakeCharacter::AttachWeaponToCharacter(AMeleeWeapon* weapon)
 
 void ASnakeCharacter::AttachShieldToCharacter(AShield * shield)
 {
+	//RemoveShieldFromCharacter();
+
 	CurrentShield = shield;
 	shield->ShieldMesh->AttachToComponent(this->GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), "Shield_Socket");
 	bIsShieldEquipped = true;
@@ -483,13 +484,33 @@ void ASnakeCharacter::AttachShieldToCharacter(AShield * shield)
 
 void ASnakeCharacter::RemoveMeleeWeaponFromCharacter()
 {
-	UE_LOG(LogTemp, Warning, TEXT(" ASnakeCharacter::RemoveMeleeWeaponFromCharacter()"));
-	CurrentMeleeWeapon->DetachFromActor(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
-	CurrentMeleeWeapon = nullptr;
-	bIsWeaponEquipped = false;
+	if (CurrentMeleeWeapon != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT(" ASnakeCharacter::RemoveMeleeWeaponFromCharacter()"));
+		CurrentMeleeWeapon->DetachFromActor(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
+		CurrentMeleeWeapon->WeaponMesh->SetSimulatePhysics(true);
+		//CurrentMeleeWeapon->PickupMesh->SetSimulatePhysics(true);
+		CurrentMeleeWeapon = nullptr;
+		bIsWeaponEquipped = false;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No Weapon attached"));
+	}
 }
 
 void ASnakeCharacter::RemoveShieldFromCharacter()
 {
-
+	if (CurrentShield != nullptr)
+	{
+		CurrentShield->DetachFromActor(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
+		CurrentShield->ShieldMesh->SetSimulatePhysics(true);
+		//CurrentMeleeWeapon->PickupMesh->SetSimulatePhysics(true);
+		CurrentShield = nullptr;
+		bIsShieldEquipped = false;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No Shield attached"));
+	}
 }

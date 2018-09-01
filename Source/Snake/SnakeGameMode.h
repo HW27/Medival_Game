@@ -47,8 +47,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		ASnakeCharacter* MyCharacter;
-
-
 public:
 
 	UPROPERTY(EditDefaultsOnly)

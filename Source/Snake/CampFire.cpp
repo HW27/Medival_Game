@@ -14,6 +14,15 @@ ACampFire::ACampFire()
 
 	Fire = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("My Fire"));
 	//Fire = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("/Game/StarterConent/Particles/P_Fire"));
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> FireParticle(TEXT("/Game/StarterContent/Particles/P_Fire"));
+	
+	if (FireParticle.Object != NULL)
+	{
+		Fire->SetTemplate(FireParticle.Object);
+	}
+	else
+		UE_LOG(LogTemp, Warning, TEXT("FIrePArticle not found"));
+
 	Fire->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	Fire->SetupAttachment(RootComponent);
 
