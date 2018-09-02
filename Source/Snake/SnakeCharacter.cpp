@@ -175,7 +175,7 @@ void ASnakeCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Locati
 
 void ASnakeCharacter::CastSpell()
 {
-	GetWorld()->SpawnActor<ACampFire>(GetCharacterMovement()->GetActorLocation(), FRotator(0, 0, 0) );
+	GetWorld()->SpawnActor<ACampFire>(GetCharacterMovement()->GetActorLocation()+100.f, FRotator(0, 0, 0) );
 	UE_LOG(LogTemp, Warning, TEXT("SPELL"));
 	MyTimeline.Stop();
 	GetWorldTimerManager().ClearTimer(MagicTimerHandle);
@@ -504,7 +504,7 @@ void ASnakeCharacter::RemoveShieldFromCharacter()
 	if (CurrentShield != nullptr)
 	{
 		CurrentShield->DetachFromActor(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
-		CurrentShield->ShieldMesh->SetSimulatePhysics(true);
+		//CurrentShield->ShieldMesh->SetSimulatePhysics(true);
 		//CurrentMeleeWeapon->PickupMesh->SetSimulatePhysics(true);
 		CurrentShield = nullptr;
 		bIsShieldEquipped = false;
